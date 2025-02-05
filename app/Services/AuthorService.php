@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\Authors;
-
 use App\Http\Requests\RequestAuthor;
-
+use Illuminate\Validation\ValidationException;
 class AuthorService
 {
   protected function findAuthorOrFail(string $id)
@@ -36,9 +36,9 @@ class AuthorService
     $author = $this->findAuthorOrFail($id);
 
     if($author->books->count() > 0) {
-      abort(response()->json([
+      throw ValidationException::withMessages([
         'error' => 'Autor possui livros cadastrados'
-      ], 404));
+      ]);
     }
 
     $author->delete();
