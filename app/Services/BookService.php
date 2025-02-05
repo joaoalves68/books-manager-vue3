@@ -9,9 +9,12 @@ class BookService
 {
   protected function findBookOrFail(string $id)
   {
+
     $book = Books::find($id);
     if (!$book) {
-      abort(404, 'Livro não encontrado');
+      abort(response()->json([
+        'error' => 'Livro não encontrado'
+      ], 404));
     }
     return $book;
   }
