@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class BooksController extends Controller
 {
   protected $bookService;
 
-  public function __construct(BookService $bookService){
+  public function __construct(BookService $bookService) {
     $this->bookService = $bookService;
   }
 
