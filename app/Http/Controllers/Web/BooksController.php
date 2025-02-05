@@ -40,7 +40,7 @@ class BooksController extends Controller
   public function destroy($id)
   {
     $book = $this->bookService->deleteBook($id);
-    return redirect()->route('books.index');
+    return redirect()->route('books.index')->with('success', 'Livro deletado com sucesso');
   }
 
   public function store(RequestBook $request)

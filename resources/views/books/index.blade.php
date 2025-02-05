@@ -9,7 +9,7 @@
   <h5 class="subtitle"><a href="{{ route('books.create') }}">Cadastrar novo</a></h5>
 
   @if(session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="success-message">
       {{ session('success') }}
     </div>
   @endif
@@ -33,10 +33,10 @@
             <td>{{ $book->author->name }}</td>
             <td class="d-flex justify-content-end">
               <a href="{{ route('books.edit', $book->id) }}" class="btn btn-secondary btn-sm me-2">Editar</a>
-              <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+              <form action="{{ route('books.destroy', $book->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Você tem certeza que deseja excluir este livro?')">Excluir</button>
               </form>
             </td>
           </tr>
