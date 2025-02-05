@@ -30,14 +30,14 @@ class BooksController extends Controller
     return view('books.create', compact('authors'));
   }
 
-  public function edit($id)
+  public function edit(string $id)
   {
     $book = $this->bookService->getBookById($id);
     $authors = Authors::all();
     return view('books.edit', compact('book', 'authors'));
   }
 
-  public function destroy($id)
+  public function destroy(string $id)
   {
     $book = $this->bookService->deleteBook($id);
     return redirect()->route('books.index')->with('success', 'Livro deletado com sucesso');
@@ -49,7 +49,7 @@ class BooksController extends Controller
     return redirect()->route('books.index')->with('success', 'Livro criado com sucesso');
   }
 
-  public function update(RequestBook $request, $id)
+  public function update(RequestBook $request, string $id)
   {
     $book = $this->bookService->updateBook($request, $id);
     return redirect()->route('books.index')->with('success', 'Livro editado com sucesso');

@@ -16,23 +16,11 @@ class AuthorsController extends Controller
     $this->authorService = $authorService;
   }
 
-  public function index()
-  {
-  }
-
-  public function create()
-  {
-  }
-
   public function store(RequestAuthor $request)
   {
   }
 
   public function show(string $id)
-  {
-  }
-
-  public function edit(string $id)
   {
   }
 

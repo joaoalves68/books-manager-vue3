@@ -24,19 +24,19 @@ class BooksController extends Controller
     return response()->json($book, 201);
   }
 
-  public function show($id) {
+  public function show(string $id) {
     $book = $this->bookService->getBookById($id);
 
     return response()->json($book, 200);
   }
 
-  public function update(RequestBook $request, $id) {
+  public function update(RequestBook $request, string $id) {
     $book = $this->bookService->updateBook($request, $id);
 
     return response()->json($book, 200);
   }
 
-  public function destroy($id) {
+  public function destroy(string $id) {
     $this->bookService->deleteBook($id);
 
     return response()->json(null, 204);

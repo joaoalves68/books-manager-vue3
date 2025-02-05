@@ -24,23 +24,19 @@ class AuthorsController extends Controller
   {
   }
 
-  public function store(RequestAuthor $request)
-  {
-  }
-
-  public function show(string $id)
-  {
-  }
-
   public function edit(string $id)
   {
   }
 
-  public function update(RequestAuthor $request, string $id)
+  public function destroy(string $id)
   {
   }
 
-  public function destroy(string $id)
+  public function store(RequestAuthor $request)
+  {
+  }
+
+  public function update(RequestAuthor $request, string $id)
   {
   }
 }

@@ -3,9 +3,11 @@
 namespace App\Services;
 use App\Models\Books;
 
+use App\Http\Requests\RequestBook;
+
 class BookService
 {
-  protected function findBookOrFail($id)
+  protected function findBookOrFail(string $id)
   {
     $book = Books::find($id);
     if (!$book) {
@@ -14,12 +16,12 @@ class BookService
     return $book;
   }
 
-  public function createBook($request)
+  public function createBook(RequestBook $request)
   {
     return Books::create($request->validated());
   }
 
-  public function updateBook($request, $id)
+  public function updateBook(RequestBook $request, string $id)
   {
     $book = $this->findBookOrFail($id);
     $book->update($request->validated());
@@ -27,7 +29,7 @@ class BookService
     return $book;
   }
 
-  public function deleteBook($id)
+  public function deleteBook(string $id)
   {
     $book = $this->findBookOrFail($id);
     $book->delete();
@@ -35,7 +37,7 @@ class BookService
     return true;
   }
 
-  public function getBookById($id)
+  public function getBookById(string $id)
   {
     return $this->findBookOrFail($id);
   }
