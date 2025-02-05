@@ -24,6 +24,8 @@ class AuthorsSeeder extends Seeder
       ['name' => 'Patrícia Lima', 'state' => 'Distrito Federal'],
     ];
 
-    Authors::insert($authors);
+    foreach ($authors as $author) {
+      Authors::create($author);
+    }
   }
 }
