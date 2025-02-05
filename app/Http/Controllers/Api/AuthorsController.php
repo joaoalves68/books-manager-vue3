@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\RequestAuthor;
 use App\Services\AuthorService;
-use App\Models\Authors;
 
 class AuthorsController extends Controller
 {
