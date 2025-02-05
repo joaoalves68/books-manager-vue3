@@ -1,4 +1,3 @@
-<!-- filepath: /home/joao/projects/books-manager/resources/views/books/index.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'Cadastrar Livro')

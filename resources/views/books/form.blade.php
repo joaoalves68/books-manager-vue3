@@ -1,4 +1,3 @@
-<!-- filepath: /home/joao/projects/books-manager/resources/views/books/form.blade.php -->
 @csrf
 <div class="mb-3">
   <label for="title" class="form-label">Título</label>
