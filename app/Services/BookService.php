@@ -5,22 +5,38 @@ use App\Models\Books;
 
 class BookService
 {
+  protected function findBookOrFail($id)
+  {
+    $book = Books::find($id);
+    if (!$book) {
+      abort(404, 'Livro não encontrado');
+    }
+    return $book;
+  }
+
   public function createBook($request)
   {
-    $book = new Books($request->validated());
-    $book->save();
+    return Books::create($request->validated());
+  }
+
+  public function updateBook($request, $id)
+  {
+    $book = $this->findBookOrFail($id);
+    $book->update($request->validated());
 
     return $book;
   }
 
-  public function updateBook($request, $id){
-    $book = Books::find($id);
-    if(!$book){
-      return response()->json(['error' => 'Livro não encontrado'], 404);
-    }
+  public function deleteBook($id)
+  {
+    $book = $this->findBookOrFail($id);
+    $book->delete();
 
-    $book->update($request->validated());
+    return true;
+  }
 
-    return $book;
+  public function getBookById($id)
+  {
+    return $this->findBookOrFail($id);
   }
 }

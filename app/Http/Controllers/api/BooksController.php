@@ -21,31 +21,24 @@ class BooksController extends Controller
   public function store(RequestBook $request) {
     $book = $this->bookService->createBook($request);
 
-    return $book;
+    return response()->json($book, 201);
+  }
+
+  public function show($id) {
+    $book = $this->bookService->getBookById($id);
+
+    return response()->json($book, 200);
   }
 
   public function update(RequestBook $request, $id) {
     $book = $this->bookService->updateBook($request, $id);
 
-    return $book;
+    return response()->json($book, 200);
   }
 
   public function destroy($id) {
-    $book = Books::find($id);
-    if (!$book) {
-      return response()->json(['error' => 'Livro não encontrado'], 404);
-    }
-    $book->delete();
+    $this->bookService->deleteBook($id);
 
-    return response()->json(['success' => 'Livro deletado'], 201);
-  }
-
-  public function show($id) {
-    $book = Books::find($id);
-    if (!$book) {
-      return response()->json(['error' => 'Livro não encontrado'], 404);
-    }
-
-    return $book;
+    return response()->json(null, 204);
   }
 }
