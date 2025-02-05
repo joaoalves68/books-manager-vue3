@@ -22,9 +22,9 @@ class RequestBook extends FormRequest
   public function rules(): array
   {
     return [
-      'title' => 'required|string|max:255',
+      'title' => 'required|string|max:255|min:3',
       'description' => 'required|string',
-      'published_at' => 'required|date',
+      'published_at' => 'required|date|before_or_equal:today',
       'author_id' => 'required|exists:authors,id',
     ];
   }
@@ -35,12 +35,14 @@ class RequestBook extends FormRequest
       'title.required' => 'O título é obrigatório.',
       'title.string' => 'O título deve ser uma string válida.',
       'title.max' => 'O título não pode ter mais de 255 caracteres.',
+      'title.min' => 'O título não pode ter menos de 3 caracteres.',
 
       'description.required' => 'A descrição é obrigatória.',
       'description.string' => 'A descrição deve ser uma string válida.',
 
       'published_at.required' => 'A data de publicação é obrigatória.',
       'published_at.date' => 'A data de publicação deve ser uma data válida.',
+      'published_at.before_or_equal' => 'A data de publicação não pode ser uma data futura.',
 
       'author_id.required' => 'O autor é obrigatório.',
       'author_id.exists' => 'O autor informado não existe.',
