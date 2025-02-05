@@ -11,7 +11,9 @@ class AuthorService
   {
     $author = Authors::find($id);
     if (!$author) {
-      abort(404, 'Autor não encontrado');
+      abort(response()->json([
+        'error' => 'Autor não encontrado'
+      ], 404));
     }
     return $author;
   }
@@ -32,6 +34,13 @@ class AuthorService
   public function deleteAuthor(string $id)
   {
     $author = $this->findAuthorOrFail($id);
+
+    if($author->books->count() > 0) {
+      abort(response()->json([
+        'error' => 'Autor possui livros cadastrados'
+      ], 404));
+    }
+
     $author->delete();
 
     return true;
