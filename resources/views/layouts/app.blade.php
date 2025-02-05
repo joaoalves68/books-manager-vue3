@@ -12,7 +12,7 @@
         <div class="logo text-center py-4"><img width="230" src="https://www.inovcorp.com/site/imagens/logo_1.png" alt="InovCorp"></div>
         <div class="list-group list-group-flush">
           <a href="{{ route('books.index') }}" class="list-group-item list-group-item-action py-3">Livros</a>
-          <a href="#" class="list-group-item list-group-item-action py-3">Autores</a>
+          <a href="{{ route('authors.index') }}" class="list-group-item list-group-item-action py-3">Autores</a>
         </div>
       </div>
 
