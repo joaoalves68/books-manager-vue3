@@ -3,7 +3,7 @@
 @section('title', 'Editar Autor')
 
 @section('content')
-<div class="container mt-5">
+<div class="container my-5">
   <h1>Editar Autor</h1>
   <h5 class="subtitle"><a href="{{ route('authors.index') }}">Voltar</a></h5>
 

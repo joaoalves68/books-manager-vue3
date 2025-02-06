@@ -3,7 +3,7 @@
 @section('title', 'Lista de Livros')
 
 @section('content')
-<div class="container mt-5">
+<div class="container my-5">
   <h1>Lista de Livros</h1>
   <h5 class="subtitle"><a href="{{ route('books.create') }}">Cadastrar novo</a></h5>
 

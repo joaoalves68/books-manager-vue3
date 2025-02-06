@@ -3,7 +3,7 @@
 @section('title', 'Lista de Autores')
 
 @section('content')
-<div class="container mt-5">
+<div class="container my-5">
   <h1>Lista de Autores</h1>
   <h5 class="subtitle"><a href="{{ route('authors.create') }}">Cadastrar novo</a></h5>
 
