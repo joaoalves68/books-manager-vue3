@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\Web\BooksController;
+use App\Http\Controllers\Web\AuthorsController;
+
+Route::resource('/books', BooksController::class);
+Route::resource('/authors', AuthorsController::class);

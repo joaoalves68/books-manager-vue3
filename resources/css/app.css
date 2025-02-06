@@ -1,3 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+#sidebar-wrapper,
+.list-group-item {
+  color: #fff;
+  background-color: #424242;
+  border: none;
+}
+
+.dropdown-menu {
+  width: 100%;
+  border-radius: 0;
+}
+
+.subtitle {
+  margin: 25px 0;
+}
+
+.subtitle a {
+  text-decoration: none;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+
+#success-message {
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+#success-message.hide {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0
+}
