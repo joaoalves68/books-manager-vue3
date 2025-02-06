@@ -20,4 +20,11 @@
     @endforeach
   </select>
 </div>
+<div class="mb-3">
+  <label for="cover" class="form-label">Capa do Livro</label>
+  <input type="file" class="form-control" id="cover" name="cover" value="{{ old('cover', $book->cover ?? '') }}" accept="image/png, image/jpg">
+</div>
+<div class="mb-3">
+  <img id="preview-image" src="{{ ($book->cover ?? false) ? asset('storage/uploads/booksCover/' . $book->cover ) : '' }}" style="display: {{ ($book->cover ?? false) ? 'block' : 'none' }}">
+</div>
 <button type="submit" class="btn btn-primary">Enviar</button>
