@@ -43,4 +43,11 @@ class AuthorsController extends Controller
 
     return response()->json(null, 204);
   }
+
+  public function getBooksAuthor(string $id)
+  {
+    $books = $this->authorService->getBooksAuthor($id);
+
+    return response()->json($books, 200);
+  }
 }

@@ -50,4 +50,10 @@ class AuthorService
   {
     return $this->findAuthorOrFail($id);
   }
+
+  public function getBooksAuthor(string $id)
+  {
+    $author = $this->findAuthorOrFail($id);
+    return $author->books;
+  }
 }
