@@ -5,12 +5,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\BooksController;
 use App\Http\Controllers\Api\AuthorsController;
+use App\Http\Controllers\Api\UsersController;
 
-Route::get('/user', function (Request $request) {
-  return $request->user();
-})->middleware('auth:sanctum');
+use App\Models\User;
 
-Route::resource('/books', BooksController::class);
-Route::resource('/authors', AuthorsController::class);
+Route::post('/login', [UsersController::class, 'login']);
 
-Route::get('authors/{id}/books', [AuthorsController::class, 'getBooksAuthor']);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+  Route::resource('/books', BooksController::class);
+  Route::resource('/authors', AuthorsController::class);
+
+  Route::get('/authors/{id}/books', [AuthorsController::class, 'getBooksAuthor']);
+});
