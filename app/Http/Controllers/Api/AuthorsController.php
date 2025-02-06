@@ -41,7 +41,7 @@ class AuthorsController extends Controller
   {
     $this->authorService->deleteAuthor($id);
 
-    return response()->json(null, 204);
+    return response()->json(['success' => 'Autor deletado com sucesso'], 201);
   }
 
   public function getBooksAuthor(string $id)
