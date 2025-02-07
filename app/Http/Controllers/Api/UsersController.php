@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Services\UserService;
-use App\Http\Requests\RequestUser;
+use App\Http\Requests\Auth\RequestLogin;
 
 class UsersController extends Controller
 {
@@ -17,7 +17,7 @@ class UsersController extends Controller
     $this->userService = $userService;
   }
 
-  public function login(RequestUser $request)
+  public function login(RequestLogin $request)
   {
     try {
       return $this->userService->loginCreateToken($request);
