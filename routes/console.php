@@ -8,5 +8,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-// Schedule::command('app:clear-old-logs')->daily()->timezone('Europe/Lisbon');
-Schedule::command('app:clear-old-logs')->everyMinute();
+Schedule::command('app:clear-old-logs')->daily()->timezone('Europe/Lisbon');
