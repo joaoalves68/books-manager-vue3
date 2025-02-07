@@ -17,7 +17,7 @@ class BookService
     $book = Books::find($id);
     if (!$book) {
       abort(response()->json([
-        'error' => 'Livro não encontrado'
+        'error' => 'Livro não encontrado.'
       ], 404));
     }
     return $book;

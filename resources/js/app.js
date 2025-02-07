@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 3000)
 
   const input_cover = document.getElementById('cover')
-  if(input_cover){
+  if(input_cover) {
     addEventListener('change', function(event) {
       let file = event.target.files[0]
 

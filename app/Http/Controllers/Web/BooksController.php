@@ -40,18 +40,18 @@ class BooksController extends Controller
   public function destroy(string $id)
   {
     $book = $this->bookService->deleteBook($id);
-    return redirect()->route('books.index')->with('success', 'Livro deletado com sucesso');
+    return redirect()->route('books.index')->with('success', 'Livro deletado com sucesso.');
   }
 
   public function store(RequestBook $request)
   {
     $book = $this->bookService->createBook($request);
-    return redirect()->route('books.index')->with('success', 'Livro criado com sucesso');
+    return redirect()->route('books.index')->with('success', 'Livro criado com sucesso.');
   }
 
   public function update(RequestBook $request, string $id)
   {
     $book = $this->bookService->updateBook($request, $id);
-    return redirect()->route('books.index')->with('success', 'Livro editado com sucesso');
+    return redirect()->route('books.index')->with('success', 'Livro editado com sucesso.');
   }
 }

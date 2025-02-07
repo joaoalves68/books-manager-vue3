@@ -37,7 +37,7 @@ class AuthorService
 
     if($author->books->count() > 0) {
       throw ValidationException::withMessages([
-        'error' => 'Autor possui livros cadastrados'
+        'error' => 'O autor '.$author->name.' possui livros cadastrados.'
       ]);
     }
 

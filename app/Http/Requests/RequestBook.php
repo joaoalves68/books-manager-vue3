@@ -48,9 +48,9 @@ class RequestBook extends FormRequest
       'author_id.required' => 'O autor é obrigatório.',
       'author_id.exists' => 'O autor informado não existe.',
 
-      'cover.image' => 'A capa do livro precisa ser uma imagem',
-      'cover.mimes' => 'A capa do livro precisa ser jpg ou png',
-      'cover.max' => 'A capa do livro não pode ser maior do que 2mb',
+      'cover.image' => 'A capa do livro precisa ser uma imagem.',
+      'cover.mimes' => 'A capa do livro precisa ser jpg ou png.',
+      'cover.max' => 'A capa do livro não pode ser maior do que 2mb.',
     ];
   }
 }

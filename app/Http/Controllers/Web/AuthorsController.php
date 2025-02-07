@@ -48,12 +48,12 @@ class AuthorsController extends Controller
   public function store(RequestAuthor $request)
   {
     $author = $this->authorService->createAuthor($request);
-    return redirect()->route('authors.index')->with('success', 'Autor criado com sucesso');
+    return redirect()->route('authors.index')->with('success', 'Autor criado com sucesso.');
   }
 
   public function update(RequestAuthor $request, string $id)
   {
     $author = $this->authorService->updateAuthor($request, $id);
-    return redirect()->route('authors.index')->with('success', 'Autor editado com sucesso');
+    return redirect()->route('authors.index')->with('success', 'Autor editado com sucesso.');
   }
 }
