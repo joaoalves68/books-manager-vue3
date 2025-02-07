@@ -71,7 +71,10 @@ Necessário Docker.
 Node v18
 
 comandos:
+cp .env.example .env
 npm install
 composer install
-sail artisan storage:link
+php artisan migrate
+php artisan db:seed --class=AuthorsSeeder
+php artisan storage:link
 npm run dev
