@@ -74,6 +74,7 @@ Node v18
 cp .env.example .env  
 npm install  
 composer install  
+./vendor/bin/sail up -d  
 php artisan migrate --seed  
 php artisan storage:link  
 npm run build  
