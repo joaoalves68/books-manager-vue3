@@ -70,11 +70,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 Necessário Docker.
 Node v18
 
-comandos:
+### Comandos:
 cp .env.example .env
 npm install
 composer install
-php artisan migrate
-php artisan db:seed --class=AuthorsSeeder
+php artisan migrate --seed
 php artisan storage:link
-npm run dev
+npm run build
+
+### Login do usuário:
+email: joaoalves@inovcorp.com
+senha: senha123
