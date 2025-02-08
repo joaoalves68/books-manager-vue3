@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
       'email' => 'joaoalves@inovcorp.com',
       'password' => Hash::make('senha123')
     ]);
+
+    $this->call(AuthorsSeeder::class);
   }
 }
