@@ -66,18 +66,24 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Run Project
-
 Necessário Docker.
+
 Node v18
 
 ### Comandos:
 cp .env.example .env
+
 npm install
+
 composer install
+
 php artisan migrate --seed
+
 php artisan storage:link
+
 npm run build
 
 ### Login do usuário:
 email: joaoalves@inovcorp.com
+
 senha: senha123
