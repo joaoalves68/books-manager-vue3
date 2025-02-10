@@ -7,6 +7,7 @@ import Register from './pages/auth/Register.vue'
 import Dashboard from './pages/Dashboard.vue'
 
 import Books from './pages/books/Books.vue'
+import EditBook from './pages/books/EditBook.vue'
 
 const isAuthenticated = () => !!localStorage.getItem('token')
 
@@ -32,7 +33,16 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: 'dashboard', component: Dashboard },
-      { path: 'books', component: Books },
+    ]
+  },
+
+  {
+    path: '/books',
+    component: AuthenticatedLayout,
+    meta: { requiresAuth: true },
+    children: [
+      { path: '', component: Books },
+      { path: 'edit-book/:id', component: EditBook },
     ]
   }
 ]
