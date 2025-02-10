@@ -71,6 +71,7 @@ Node v18
 
 ### Comandos:  
 ```sh
+cd backend  
 cp .env.example .env  
 npm install  
 composer install  

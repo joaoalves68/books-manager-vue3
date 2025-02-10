@@ -22,7 +22,7 @@ class UsersController extends Controller
     try {
       return $this->userService->loginCreateToken($request);
     } catch (\Throwable $th) {
-      return response()->json(['error' => $th->getMessage()], 404);
+      return response()->json(['error' => $th->getMessage()], 400);
     }
   }
 }
