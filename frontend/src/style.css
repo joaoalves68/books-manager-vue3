@@ -48,3 +48,20 @@
   padding: 16px;
   margin: 30px 0;
 }
+
+.page-link:focus{
+  box-shadow: none !important;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffffa6;
+  z-index: 4;
+}

@@ -3,12 +3,6 @@
     <h1>Lista de Livros</h1>
     <h5 class="subtitle"><a href="">Cadastrar novo</a></h5>
 
-    <!-- @if(session('success'))
-      <div class="alert alert-success" id="success-message">
-        {{ session('success') }}
-      </div>
-    @endif -->
-
     <table class="table">
       <thead>
         <tr>
@@ -20,28 +14,93 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="livro in livros" :key="livro.id">
-          <td>{{ livro.titulo }}</td>
-          <td class="text-truncate">{{ livro.descricao }}</td>
-          <td>{{ livro.publicado_em }}</td>
-          <td>{{ livro.autor }}</td>
+        <tr v-for="book in paginatedBooks" :key="book.id">
+          <td>{{ book.title }}</td>
+          <td class="text-truncate">{{ book.description }}</td>
+          <td>{{ book.published_at }}</td>
+          <td>{{ book.author_name }}</td>
           <td class="d-flex justify-content-end">
-            <a class="btn btn-secondary btn-sm me-2">Editar</a>
-            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Você tem certeza que deseja excluir este livro?')">Excluir</button>
+            <router-link
+              class="btn btn-secondary btn-sm me-2"
+              :to="`/books/edit-book/${book.id}`"
+            >
+              Editar
+            </router-link>
+            <button 
+              type="button" 
+              class="btn btn-danger btn-sm" 
+              @click="confirmDelete(book.id)">
+              Excluir
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <div v-if="isLoading" class="loader-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+
+    <Pagination 
+      :currentPage="currentPage"
+      :totalItems="books.length"
+      :itemsPerPage="itemsPerPage"
+      @update:currentPage="updateCurrentPage"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { getBooks } from "@/api"
+import { ref, computed, onMounted } from 'vue'
+import { getBooks, deleteBook } from '@/api'
+import Pagination from '@/components/Pagination.vue'
+import Swal from 'sweetalert2'
 
-const livros = ref([])
+const books = ref([])
+const currentPage = ref(1)
+const itemsPerPage = ref(10)
+const isLoading = ref(false)
+
+const paginatedBooks = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  return books.value.slice(start, start + itemsPerPage.value)
+})
 
 onMounted(async () => {
-  console.log(getBooks())
+  books.value = await getBooks()
 })
+
+const updateCurrentPage = (page) => {
+  currentPage.value = page
+}
+
+const confirmDelete = async (id) => {
+  const confirm = await Swal.fire({
+    title: 'Você tem certeza que deseja excluir o livro?',
+    text: "Essa ação não pode ser revertida.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim',
+    cancelButtonText: 'Cancelar',
+  })
+
+  if (confirm) {
+    isLoading.value = true
+    try {
+      await deleteBook(id)
+      books.value = books.value.filter(book => book.id !== id)
+      Swal.fire(
+        'Deletado!',
+        'O livro foi excluído com sucesso.',
+        'success'
+      )
+    } catch (error) {
+      console.error("Erro ao excluir livro:", error)
+    } finally {
+      isLoading.value = false
+    }
+  }
+}
 </script>
