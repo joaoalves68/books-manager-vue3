@@ -46,4 +46,11 @@ class BooksController extends Controller
     new LogService(auth()->user()->id, 'Usuário '.auth()->user()->name.' deletou o livro id: '.$id);
     return response()->json(['success' => 'Livro deletado com sucesso'], 201);
   }
+
+  public function index() {
+    $books = $this->bookService->getBooks();
+
+    new LogService(auth()->user()->id, 'Usuário '.auth()->user()->name.' buscou pelos livros');
+    return response()->json($books, 200);
+  }
 }

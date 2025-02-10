@@ -26,7 +26,7 @@ class RequestBook extends FormRequest
       'description' => 'required|string',
       'published_at' => 'required|date|before_or_equal:today',
       'author_id' => 'required|exists:authors,id',
-      'cover' => 'image|mimes:jpg,png,jpeg|max:2048'
+      'cover' => 'image|mimes:jpg,png,jpeg|max:2048|nullable'
     ];
   }
 

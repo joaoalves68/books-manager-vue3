@@ -5,6 +5,7 @@ use App\Models\Books;
 use App\Http\Requests\RequestBook;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
@@ -25,7 +26,7 @@ class BookService
 
   protected function uploadImage(UploadedFile $image, string $bookTitle)
   {
-    $image_title = $bookTitle . '-' . now()->format('Y-m-d-H-i-s') . '.' . $image->getClientOriginalExtension();
+    $image_title = Str::slug($bookTitle) . '-' . now()->format('Y-m-d-H-i-s') . '.' . $image->getClientOriginalExtension();
 
     $image_instance = ImageManager::imagick()->read($image);
     $image_instance->resize(200, 200);
@@ -80,5 +81,15 @@ class BookService
   public function getBookById(string $id)
   {
     return $this->findBookOrFail($id);
+  }
+
+  public function getBooks()
+  {
+    $books = Books::join('authors', 'books.author_id', '=', 'authors.id')
+                  ->select('books.*', 'authors.name as author_name')
+                  ->orderBy('books.title', 'asc')
+                  ->get();
+
+    return $books;
   }
 }
