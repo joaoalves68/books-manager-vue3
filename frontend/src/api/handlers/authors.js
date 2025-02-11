@@ -11,7 +11,6 @@ export const getAuthors = async () => {
     })
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar por autores:", error)
     throw error
   }
 }
@@ -27,7 +26,6 @@ export const deleteAuthor = async (id) => {
     })
     return response.data
   } catch (error) {
-    console.error("Erro ao deletar autor:", error)
     throw error
   }
 }
@@ -43,7 +41,6 @@ export const getAuthorById = async (id) => {
     })
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar livro:", error)
     throw error
   }
 }

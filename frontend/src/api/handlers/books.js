@@ -11,7 +11,6 @@ export const getBooks = async () => {
     })
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar por livros:", error)
     throw error
   }
 }
@@ -27,7 +26,6 @@ export const deleteBook = async (id) => {
     })
     return response.data
   } catch (error) {
-    console.error("Erro ao deletar livro:", error)
     throw error
   }
 }
@@ -43,7 +41,6 @@ export const getBookById = async (id) => {
     })
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar livro:", error)
     throw error
   }
 }

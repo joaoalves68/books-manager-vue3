@@ -48,7 +48,6 @@ onMounted(async () => {
   try {
     author.value = await getAuthorById(authorId)
   } catch (error) {
-    console.error("Erro ao buscar o autor:", error)
     router.push('/authors')
   } finally {
     isLoading.value = false
