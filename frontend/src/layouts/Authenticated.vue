@@ -14,7 +14,7 @@
               <div class="logo text-center py-4"><router-link to="/dashboard"><img width="230" src="https://www.inovcorp.com/site/imagens/logo_1.png" alt="InovCorp"></router-link></div>
               <div class="list-group list-group-flush">
                 <router-link class="list-group-item list-group-item-action py-3" to="/books">Livros</router-link>
-                <router-link class="list-group-item list-group-item-action py-3" to="">Autores</router-link>
+                <router-link class="list-group-item list-group-item-action py-3" to="/authors">Autores</router-link>
               </div>
             </div>
 
