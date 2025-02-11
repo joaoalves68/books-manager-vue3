@@ -79,6 +79,11 @@ composer install
 php artisan migrate --seed  
 php artisan storage:link  
 npm run build  
+
+cd ..  
+cd frontend  
+npm install  
+npm run dev  
 ```
 
 ## Login do usuário:
