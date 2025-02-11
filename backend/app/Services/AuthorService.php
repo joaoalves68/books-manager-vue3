@@ -56,4 +56,10 @@ class AuthorService
     $author = $this->findAuthorOrFail($id);
     return $author->books;
   }
+
+  public function getAuthors()
+  {
+    $authors = Authors::orderBy('name', 'asc')->get();
+    return $authors;
+  }
 }
