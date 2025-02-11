@@ -7,6 +7,10 @@ export const auth = async(email, password) => {
   })
 }
 
+export const register = async (formData) => {
+  return axios.post(`http://localhost:80/api/register/`, formData)
+}
+
 export const logout = () => {
   localStorage.removeItem('token')
 }

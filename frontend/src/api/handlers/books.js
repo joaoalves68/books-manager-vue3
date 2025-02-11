@@ -51,14 +51,21 @@ export const getBookById = async (id) => {
 export const updateBook = async (id, formData) => {
   const token = localStorage.getItem('token');
 
-  axios.put(`http://localhost:80/api/books/${id}`, formData, {
+  return axios.post(`http://localhost:80/api/books/${id}`, formData, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'multipart/form-data',
     }
-  }).then(response => {
-    console.log(response.data)
-  }).catch(error => {
-    console.error(error)
-  });
+  })
+}
+
+export const storeBook = async (formData) => {
+  const token = localStorage.getItem('token');
+
+  return axios.post(`http://localhost:80/api/books/`, formData, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    }
+  })
 }
