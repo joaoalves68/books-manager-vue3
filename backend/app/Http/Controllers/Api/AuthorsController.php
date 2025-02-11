@@ -50,6 +50,14 @@ class AuthorsController extends Controller
     return response()->json(['success' => 'Autor deletado com sucesso'], 201);
   }
 
+  public function index()
+  {
+    $authors = $this->authorService->getAuthors();
+
+    new LogService(auth()->user()->id, 'Usuário '.auth()->user()->name.' buscou pelos livros');
+    return response()->json($authors, 200);
+  }
+
   public function getBooksAuthor(string $id)
   {
     $books = $this->authorService->getBooksAuthor($id);
