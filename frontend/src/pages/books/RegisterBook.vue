@@ -1,6 +1,6 @@
 <template>
   <div class="container my-5">
-    <h1>Editar Livro</h1>
+    <h1>Cadastrar Livro</h1>
     <h5 class="subtitle"><router-link to="/books">Voltar</router-link></h5>
 
     <div class="alert alert-danger" v-if="errors.length > 0">
@@ -42,8 +42,8 @@
       <div class="mb-3">
         <div class="mb-3">
           <img 
-            v-if="previewImage || book.cover"
-            :src="previewImage || `http://localhost:80/storage/uploads/booksCover/${book.cover}`"
+            v-if="previewImage"
+            :src="previewImage"
             alt="Pré-visualização da capa"
             id="preview-image"
             class="img-fluid"
@@ -63,29 +63,25 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getBookById, updateBook, getAuthors } from '@/api'
-import { useRoute } from 'vue-router'
+import { getAuthors, storeBook } from '@/api'
+import { useRouter } from 'vue-router'
 import Swal from 'sweetalert2'
 
 const isLoading = ref(false)
 const errors = ref([])
-const book = ref({})
+const book = ref({
+  title: "",
+  description: "",
+  published_at: "",
+  author_id: "",
+  cover: null
+})
 const authors = ref([])
 const previewImage = ref("")
 
-const router = useRoute()
-const bookId = router.params.id
+const router = useRouter()
 
 onMounted(async () => {
-  isLoading.value = true
-  try {
-    book.value = await getBookById(bookId)
-  } catch (error) {
-    console.error("Erro ao buscar o livro:", error)
-  } finally {
-    isLoading.value = false
-  }
-  
   authors.value = await getAuthors()
 })
 
@@ -108,20 +104,22 @@ const saveBook = async () => {
   formData.append('published_at', book.value.published_at)
   formData.append('author_id', book.value.author_id)
   if (book.value.cover instanceof File) formData.append('cover', book.value.cover)
-  formData.append('_method', 'PUT')
 
   try {
-    await updateBook(bookId, formData)
+    const response = await storeBook(formData)
     Swal.fire(
       'Sucesso!',
-      'O livro foi atualizado com sucesso.',
+      'O livro foi cadastrado com sucesso.',
       'success'
     )
+
+    router.push("/books")
   } catch (error) {
     errors.value = Object.entries(error.response.data.errors).flatMap(([field, messages]) =>
       messages.map(message => ({ field, message }))
     )
+  } finally {
+    isLoading.value = false
   }
-  isLoading.value = false
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="container my-5">
     <h1>Lista de Livros</h1>
-    <h5 class="subtitle"><a href="">Cadastrar novo</a></h5>
+    <h5 class="subtitle"><router-link to="/books/register">Cadastrar novo</router-link></h5>
 
     <table class="table">
       <thead>
@@ -17,12 +17,12 @@
         <tr v-for="book in paginatedBooks" :key="book.id">
           <td>{{ book.title }}</td>
           <td class="text-truncate">{{ book.description }}</td>
-          <td>{{ book.published_at }}</td>
+          <td>{{ formatDate(book.published_at) }}</td>
           <td>{{ book.author_name }}</td>
           <td class="d-flex justify-content-end">
             <router-link
               class="btn btn-secondary btn-sm me-2"
-              :to="`/books/edit-book/${book.id}`"
+              :to="`/books/edit/${book.id}`"
             >
               Editar
             </router-link>
@@ -102,5 +102,10 @@ const confirmDelete = async (id) => {
       isLoading.value = false
     }
   }
+}
+
+const formatDate = (date) => {
+  if (!date) return ""
+  return date.split("-").reverse().join("/")
 }
 </script>
