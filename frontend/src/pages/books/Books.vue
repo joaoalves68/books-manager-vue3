@@ -86,7 +86,7 @@ const confirmDelete = async (id) => {
     cancelButtonText: 'Cancelar',
   })
 
-  if (confirm) {
+  if (confirm.isConfirmed) {
     isLoading.value = true
     try {
       await deleteBook(id)
