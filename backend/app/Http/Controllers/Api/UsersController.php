@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Services\UserService;
 use App\Http\Requests\Auth\RequestLogin;
+use App\Http\Requests\Auth\RequestRegister;
 
 class UsersController extends Controller
 {
@@ -21,6 +22,15 @@ class UsersController extends Controller
   {
     try {
       return $this->userService->loginCreateToken($request);
+    } catch (\Throwable $th) {
+      return response()->json(['error' => $th->getMessage()], 400);
+    }
+  }
+
+  public function register(RequestRegister $request)
+  {
+    try {
+      return $this->userService->register($request);
     } catch (\Throwable $th) {
       return response()->json(['error' => $th->getMessage()], 400);
     }
