@@ -49,13 +49,13 @@ const login = async () => {
   isLoading.value = true
 
   try {
-   const {data} = await auth(email.value, password.value)
+    const {data} = await auth(email.value, password.value)
 
     localStorage.setItem("token", data.token)
     router.push("/dashboard")
   } catch (error) {
     Swal.fire(
-      'Deletado!',
+      'Erro!',
       'As credenciais estão incorretas.',
       'warning'
     )
