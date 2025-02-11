@@ -82,7 +82,6 @@ onMounted(async () => {
   try {
     book.value = await getBookById(bookId)
   } catch (error) {
-    console.error("Erro ao buscar o livro:", error)
     router.push('/books')
   } finally {
     isLoading.value = false
