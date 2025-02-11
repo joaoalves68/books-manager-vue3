@@ -9,6 +9,9 @@ import Dashboard from './pages/Dashboard.vue'
 import Books from './pages/books/Books.vue'
 import EditBook from './pages/books/EditBook.vue'
 import RegisterBook from './pages/books/RegisterBook.vue' 
+import Authors from './pages/authors/Authors.vue'
+import EditAuthor from './pages/authors/EditAuthor.vue'
+import RegisterAuthor from './pages/authors/RegisterAuthor.vue'
 
 const isAuthenticated = () => !!localStorage.getItem('token')
 
@@ -36,7 +39,6 @@ const routes = [
       { path: 'dashboard', component: Dashboard },
     ]
   },
-
   {
     path: '/books',
     component: AuthenticatedLayout,
@@ -45,6 +47,16 @@ const routes = [
       { path: '', component: Books },
       { path: 'edit/:id', component: EditBook },
       { path: 'register', component: RegisterBook },
+    ]
+  },
+  {
+    path: '/authors',
+    component: AuthenticatedLayout,
+    meta: { requiresAuth: true },
+    children: [
+      { path: '', component: Authors },
+      { path: 'edit/:id', component: EditAuthor },
+      { path: 'register', component: RegisterAuthor },
     ]
   }
 ]
