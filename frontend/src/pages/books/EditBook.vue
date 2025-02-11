@@ -64,7 +64,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getBookById, updateBook, getAuthors } from '@/api'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import Swal from 'sweetalert2'
 
 const isLoading = ref(false)
@@ -73,8 +73,9 @@ const book = ref({})
 const authors = ref([])
 const previewImage = ref("")
 
-const router = useRoute()
-const bookId = router.params.id
+const route = useRoute()
+const router = useRouter()
+const bookId = route.params.id
 
 onMounted(async () => {
   isLoading.value = true
@@ -82,6 +83,7 @@ onMounted(async () => {
     book.value = await getBookById(bookId)
   } catch (error) {
     console.error("Erro ao buscar o livro:", error)
+    router.push('/books')
   } finally {
     isLoading.value = false
   }

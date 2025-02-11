@@ -32,15 +32,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getAuthorById, updateAuthor } from '@/api'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import Swal from 'sweetalert2'
 
 const isLoading = ref(false)
 const errors = ref([])
 const author = ref({})
 
-const router = useRoute()
-const authorId = router.params.id
+const route = useRoute()
+const router = useRouter()
+const authorId = route.params.id
 
 onMounted(async () => {
   isLoading.value = true
@@ -48,6 +49,7 @@ onMounted(async () => {
     author.value = await getAuthorById(authorId)
   } catch (error) {
     console.error("Erro ao buscar o autor:", error)
+    router.push('/authors')
   } finally {
     isLoading.value = false
   }
