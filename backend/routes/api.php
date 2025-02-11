@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UsersController;
 use App\Models\User;
 
 Route::post('/login', [UsersController::class, 'login']);
+Route::post('/register', [UsersController::class, 'register']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
   Route::resource('/books', BooksController::class);
