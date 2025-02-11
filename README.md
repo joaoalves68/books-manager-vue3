@@ -75,7 +75,7 @@ cd backend
 cp .env.example .env  
 npm install  
 composer install  
-./vendor/bin/sail up -d  
+./vendor/bin/sail up -d --build  
 php artisan migrate --seed  
 php artisan storage:link  
 npm run build  
